@@ -1,0 +1,26 @@
+// Variables for entire project
+ext {
+    // Setup
+    minSdkVersion = 11
+    sourceCompatibilityVersion = JavaVersion.VERSION_11
+    targetCompatibilityVersion = JavaVersion.VERSION_11
+
+    // Common versions
+    //supportLibraryVersion = "25.3.1"
+}
+
+// Plugins
+ext.plugs = [
+        //buildScanPlugin           : "com.gradle:build-scan-plugin:1.6",
+]
+
+// Dependencies
+ext.deps = [
+        // compile
+        //design            : "com.android.support:design:$supportLibraryVersion",
+
+        // testCompile
+        junit      : "junit:junit:4.12",
+        mockitoCore: "org.mockito:mockito-core:2.8.9",
+        assertjCore: "org.assertj:assertj-core:1.7.1",
+]

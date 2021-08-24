@@ -1,0 +1,34 @@
+buildscript {
+    rootProject.ext.ci = rootProject.hasProperty("ci")
+
+    apply from: rootProject.file("gradle/versions.gradle")
+
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.4.9'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    apply from: rootProject.file("gradle/compile.gradle")
+    apply from: rootProject.file("project.gradle")
+    apply from: rootProject.file("gradle/quality.gradle")
+}
+
+subprojects {
+    apply from: rootProject.file("gradle/quality.gradle")
+}

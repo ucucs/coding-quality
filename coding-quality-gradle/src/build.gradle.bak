@@ -1,0 +1,64 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.9'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'checkstyle'
+}
+
+group = 'com.ucucs'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// checkStyle config start
+
+checkstyle {
+    // The version of the code quality tool to be used.
+    // The most recent version of Checkstyle can be found at https://github.com/checkstyle/checkstyle/releases
+    toolVersion = "8.44"
+
+    // The source sets to be analyzed as part of the check and build tasks.
+    // Use 'sourceSets = []' to remove Checkstyle from the check and build tasks.
+    sourceSets = [project.sourceSets.main, project.sourceSets.test]
+
+    // Whether or not to allow the build to continue if there are warnings.
+    ignoreFailures = false
+
+    // Whether or not rule violations are to be displayed on the console.
+    showViolations = true
+
+    // The maximum number of warnings that are tolerated before breaking the build
+    maxWarnings = 0
+
+    //configProperties.projectDir = project.projectDir
+    //checkstyleMain.configFile=new File(project.projectDir,'/config/checkstyle/google_checks.xml')
+
+    configFile file("${rootProject.rootDir}/config/checkstyle/checkstyle.xml")
+
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = false
+        html.required = true
+        //html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+    }
+}
+
+project.afterEvaluate {
+    test.dependsOn 'checkstyleMain'
+}
+
+// checkStyle config end

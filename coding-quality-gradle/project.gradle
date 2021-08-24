@@ -1,0 +1,14 @@
+//apply plugin: 'org.springframework.boot:2.4.9'
+//apply plugin: 'io.spring.dependency-management:1.0.11.RELEASE'
+
+group = 'com.ucucs'
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
